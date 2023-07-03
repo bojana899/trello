@@ -7,14 +7,15 @@ import TrelloApi from "../../api/TrelloApi";
 function BoardPage() {
   const [lists, setLists] = useState([]);
   const [cards, setCards] = useState([]);
-  const[comments,setComments]=useState([])
+  const [comments, setComments] = useState([])
 
   // board id
   let { id } = useParams();
   useEffect(() => {
     fetchLists();
     fetchCards();
-  }, [id,comments]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, comments]);
 
   const fetchLists = () => {
     TrelloApi.fetchLists(id).then((data) => {
@@ -24,13 +25,13 @@ function BoardPage() {
   const fetchCards = () => {
     TrelloApi.fetchCards(id).then((data) => {
       setCards(data);
-    
+
     });
   };
 
   const addList = (value) => {
     TrelloApi.addList(id, value).then(() =>
-     fetchLists());
+      fetchLists());
   };
 
   const addCards = (value, listId) => {
@@ -45,8 +46,8 @@ function BoardPage() {
     });
   };
 
-  const updateCards = (cardId,cardContent) => {
-    TrelloApi.updateCards(cardId,cardContent).then(() => {
+  const updateCards = (cardId, cardContent) => {
+    TrelloApi.updateCards(cardId, cardContent).then(() => {
       fetchCards();
     });
   };
@@ -55,25 +56,25 @@ function BoardPage() {
       fetchCards();
     });
   };
-  const addComment = (cardId,text) => {
-    TrelloApi.addComment(cardId,text).then(() => {
+  const addComment = (cardId, text) => {
+    TrelloApi.addComment(cardId, text).then(() => {
     });
     getComment(cardId)
   };
   const getComment = (cardId) => {
     TrelloApi.getComment(cardId).then((data) => {
-    setComments(data)
+      setComments(data)
     });
   };
-  const deleteComment = (cardId,idAction) => {
-    TrelloApi.deleteComment(cardId,idAction).then(() => {
-     getComment(cardId)
-     fetchCards()
+  const deleteComment = (cardId, idAction) => {
+    TrelloApi.deleteComment(cardId, idAction).then(() => {
+      getComment(cardId)
+      fetchCards()
     });
   };
-  const updateComment = (cardId,idAction,text) => {
-    TrelloApi.updateComment(cardId,idAction,text).then(() => {
-     getComment(cardId)
+  const updateComment = (cardId, idAction, text) => {
+    TrelloApi.updateComment(cardId, idAction, text).then(() => {
+      getComment(cardId)
 
     });
   };
@@ -99,11 +100,11 @@ function BoardPage() {
         deleteComment,
         updateComment,
         archiveList,
-      
+
       }}
     >
       <Board lists={lists} cards={cards} />
-       </StoreApi.Provider>
+    </StoreApi.Provider>
   );
 }
 

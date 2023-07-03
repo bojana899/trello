@@ -1,9 +1,12 @@
+
+// eslint-disable
 import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import style from "./Comment.module.css";
 import storeApi from '../../../../utilis/storeApi'
 import ReusableCommentForm from "../ReusableCommentForm/ReusableCommentForm";
+
 
 function Comment({ com }) {
   const [date, setDate] = useState("");
@@ -22,12 +25,14 @@ function Comment({ com }) {
     return () => {
       clearInterval(interval);
     };
+    // eslint-disable-next-line
   }, []);
 
   return (
     <>
       <div>
         <img
+          alt="description "
           src={`${com.memberCreator.avatarUrl}/30.png`}
           className={style.avatar}
         />
