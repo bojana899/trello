@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
@@ -9,12 +10,12 @@ import style from "./List.module.css";
 import storeApi from "../../utilis/storeApi";
 import Popover from "react-bootstrap/Popover";
 
-function List({ list,cards }) {
+function List({ list, cards }) {
   const title = list.name;
   const listId = list.id;
   const [listName, setListName] = useState(title);
   const [open, setOpen] = useState(false);
-  const { updateListName,archiveList} = useContext(storeApi);
+  const { updateListName, archiveList } = useContext(storeApi);
 
   const getName = (e) => {
     setListName(e.target.value);
@@ -32,7 +33,7 @@ function List({ list,cards }) {
     <Popover>
       <Popover.Title as="h5">List Actions</Popover.Title>
       <Popover.Content>
-        <strong onClick={(e)=>{e.preventDefault(),archiveList(listId)}} style={{cursor:"pointer"}}>Archive List</strong>
+        <strong onClick={(e) => { e.preventDefault(), archiveList(listId) }} style={{ cursor: "pointer" }}>Archive List</strong>
       </Popover.Content>
     </Popover>
   );
@@ -58,8 +59,8 @@ function List({ list,cards }) {
       </div>
       {filterCards
         ? filterCards.map((card) => {
-            return <Card card={card} key={card.id} />;
-          })
+          return <Card card={card} key={card.id} />;
+        })
         : null}
       <ReusableInputComponent type="card" listId={listId} />
     </div>

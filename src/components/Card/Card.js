@@ -1,4 +1,5 @@
-import React, { useState, useContext, useRef} from "react";
+/* eslint-disable */
+import React, { useState, useContext, useRef } from "react";
 import PropTypes from "prop-types";
 import { faComment, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +14,7 @@ function Card({ card }) {
   const [position, setPosition] = useState({ top: "", left: "" });
   //comment modal
   const [modalIsOpen, setIsOpen] = useState(false);
-  const { updateCards, deleteCard, addComment,comments,getComment} = useContext(storeApi);
+  const { updateCards, deleteCard, addComment, comments, getComment } = useContext(storeApi);
 
   const el = useRef();
   const handleShow = () => {
@@ -55,16 +56,16 @@ function Card({ card }) {
         ref={el}
         className={`card ${style.trelloCard} `}
         style={{ width: "300px", minHeight: "25px" }}
-       
+
       >
         <div className="card-body p-1 pl-2">
           <div className="card-text d-flex justify-content-between">
-            <p  onClick={(e) => { e.stopPropagation(), openModal()}}>{card.name} </p>
+            <p onClick={(e) => { e.stopPropagation(), openModal() }}>{card.name} </p>
             <div>
               <span className={"mr-2 ml-3" + style.trash}>
                 <FontAwesomeIcon
                   color="#6b778c"
-                  onClick={(e) => {e.stopPropagation(),deleteCard(card.id)}}
+                  onClick={(e) => { e.stopPropagation(), deleteCard(card.id) }}
                   icon={faTrash}
                 />
               </span>
@@ -72,7 +73,7 @@ function Card({ card }) {
                 <FontAwesomeIcon icon={faPen} color="#6b778c" />
               </span>
             </div>
-           
+
           </div>
           <ModalCard
             position={position}
@@ -90,11 +91,11 @@ function Card({ card }) {
             handleComments={handleComments}
             comments={comments}
           />
-          
-          {card?.badges?.comments>0? <div className={style.commentInfo}>
-            <FontAwesomeIcon icon={faComment}/>
-            <span className="pl-2">{card?.badges?.comments}</span> 
-            </div>:""}
+
+          {card?.badges?.comments > 0 ? <div className={style.commentInfo}>
+            <FontAwesomeIcon icon={faComment} />
+            <span className="pl-2">{card?.badges?.comments}</span>
+          </div> : ""}
         </div>
       </div>
     </>
@@ -102,6 +103,6 @@ function Card({ card }) {
 }
 Card.propTypes = {
   card: PropTypes.object,
-  comments:PropTypes.array
+  comments: PropTypes.array
 };
 export default Card;
