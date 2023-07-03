@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import PropTypes from "prop-types";
 import Comment from "./Comment/Comment";
@@ -7,7 +8,7 @@ import FormComment from "./Comment/FormComment/FormComment";
 import HeaderCommentModal from "./HeaderCommentModal/HeaderCommentModal";
 
 
-function Comments({ modalIsOpen, closeModal, handleComments, comments,card}) {
+function Comments({ modalIsOpen, closeModal, handleComments, comments, card }) {
   return (
     <div>
       <Modal
@@ -24,7 +25,7 @@ function Comments({ modalIsOpen, closeModal, handleComments, comments,card}) {
         >
           <span> X</span>
         </div>
-        <HeaderCommentModal card={card}/>
+        <HeaderCommentModal card={card} />
         <FormComment handleComments={handleComments} comments={comments} />
         {/* comments */}
         <div className={style.comments}>
@@ -38,9 +39,9 @@ function Comments({ modalIsOpen, closeModal, handleComments, comments,card}) {
 }
 Comments.propTypes = {
   modalIsOpen: PropTypes.bool,
-  closeModal:PropTypes.func,
-  handleComments:PropTypes.func,
-  comments:PropTypes.array,
-  card:PropTypes.object
+  closeModal: PropTypes.func,
+  handleComments: PropTypes.func,
+  comments: PropTypes.array,
+  card: PropTypes.object
 };
 export default Comments;
